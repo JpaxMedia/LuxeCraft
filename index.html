@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuxeCraft Construction</title>
+    <!-- Google Fonts: Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #1a1a1a; /* Dark background */
+            color: #f5f5f5; /* Light text */
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            position: relative;
+            height: 60vh; /* Smaller header */
+            background-image: url('Photos/luxecraftheader.png');
+            background-size: cover;
+            background-position: center;
+            background-color: #333; /* Fallback gray if image fails */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .header-overlay {
+            background: rgba(0, 0, 0, 0.7); /* Dark overlay */
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .logo {
+            max-width: 300px; /* Larger logo */
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 2rem; /* Smaller tagline */
+            font-weight: 600;
+            color: #d4af37; /* Gold accent */
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Mission Section */
+        .mission {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: #14213d; /* Navy blue */
+        }
+
+        .mission h2 {
+            font-size: 2rem;
+            color: #d4af37; /* Gold */
+            margin-bottom: 20px;
+        }
+
+        .mission p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        .mission img {
+            max-width: 100%;
+            width: 800px; /* Match text width */
+            margin-top: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: #1a1a1a;
+        }
+
+        .services h2 {
+            font-size: 2rem;
+            color: #d4af37;
+            margin-bottom: 40px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-item {
+            background-color: #14213d;
+            padding: 30px;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-item i {
+            font-size: 2.5rem;
+            color: #d4af37;
+            margin-bottom: 20px;
+        }
+
+        .service-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .service-item p {
+            font-size: 1rem;
+            font-weight: 300;
+        }
+
+        /* Why Choose Section */
+        .why-choose {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: #14213d;
+        }
+
+        .why-choose h2 {
+            font-size: 2rem;
+            color: #d4af37;
+            margin-bottom: 30px;
+        }
+
+        .why-choose ul {
+            list-style: none;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .why-choose li {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .why-choose i {
+            color: #d4af37;
+            margin-right: 10px;
+        }
+
+        /* Call to Action */
+        .cta {
+            padding: 40px 20px;
+            text-align: center;
+            background-color: #1a1a1a;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            color: #d4af37;
+            font-weight: 700;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: #14213d;
+        }
+
+        .contact h2 {
+            font-size: 2rem;
+            color: #d4af37;
+            margin-bottom: 20px;
+        }
+
+        .contact p {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .contact a {
+            color: #d4af37;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact a:hover {
+            color: #f5f5f5;
+        }
+
+        .contact i {
+            margin-right: 10px;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 40px 20px;
+            text-align: center;
+            background-color: #1a1a1a;
+        }
+
+        .footer-logo {
+            max-width: 150px;
+            margin-bottom: 20px;
+        }
+
+        .footer p {
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+
+        /* Scroll Animation for Mobile */
+        @media (max-width: 768px) {
+            [data-animate] {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.5s ease, transform 0.5s ease;
+            }
+
+            .animate-on-scroll {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Animation Keyframes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.6rem;
+            }
+
+            .logo {
+                max-width: 250px; /* Larger logo for mobile */
+            }
+
+            .mission h2,
+            .services h2,
+            .why-choose h2,
+            .contact h2 {
+                font-size: 1.8rem;
+            }
+
+            .cta h2 {
+                font-size: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-item {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.3rem;
+            }
+
+            .logo {
+                max-width: 200px; /* Larger logo for small mobile */
+            }
+
+            .mission p,
+            .service-item p,
+            .why-choose li,
+            .contact p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="header-overlay">
+            <img src="Photos/luxecraftwhitewebsite.png" alt="LuxeCraft Construction Logo" class="logo">
+            <h1>Building Better from the Frame Up</h1>
+        </div>
+    </header>
+
+    <!-- Mission Section -->
+    <section class="mission">
+        <h2 data-animate>Our Mission</h2>
+        <p data-animate>At LuxeCraft Construction LLC, we deliver skilled craftsmanship, dependable service, and top-tier framing expertise. Whether you're a builder seeking a reliable framing crew or a homeowner planning a remodel, we bring precision and passion to every project, ensuring your vision becomes reality.</p>
+        <img src="Photos/house1.jpg" alt="Modern Home Construction" data-animate>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <h2 data-animate>Our Services</h2>
+        <div class="services-grid">
+            <div class="service-item">
+                <i class="fas fa-home"></i>
+                <h3 data-animate>New Construction Homes</h3>
+                <p data-animate>Custom homes and more, built with precision and care.</p>
+            </div>
+            <div class="service-item">
+                <i class="fas fa-expand-arrows-alt"></i>
+                <h3 data-animate>Home Additions & Expansions</h3>
+                <p data-animate>Seamlessly expand your living space with expert craftsmanship.</p>
+            </div>
+            <div class="service-item">
+                <i class="fas fa-hammer"></i>
+                <h3 data-animate>Full or Partial Remodels</h3>
+                <p data-animate>Transform your home with stunning, high-quality remodels.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose LuxeCraft Section -->
+    <section class="why-choose">
+        <h2 data-animate>Why Choose LuxeCraft?</h2>
+        <ul>
+            <li data-animate><i class="fas fa-check"></i> Experienced pros delivering exceptional results</li>
+            <li data-animate><i class="fas fa-check"></i> Dedicated service tailored to your needs</li>
+            <li data-animate><i class="fas fa-check"></i> Clean, organized work sites for safety and efficiency</li>
+            <li data-animate><i class="fas fa-check"></i> Code-compliant framing for lasting durability</li>
+        </ul>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta">
+        <h2 data-animate>Let's Build Something Solid Together</h2>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact">
+        <h2 data-animate>Contact Us Today</h2>
+        <p data-animate><i class="fas fa-phone"></i> <a href="tel:+18645534755">(864) 553-4755</a></p>
+        <p data-animate><i class="fas fa-phone"></i> <a href="tel:+18644941252">(864) 494-1252</a></p>
+        <p data-animate><i class="fas fa-envelope"></i> <a href="mailto:luxecraftconstruction@outlook.com">luxecraftconstruction@outlook.com</a></p>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <img src="Photos/luxecraftwhitewebsite.png" alt="LuxeCraft Construction Logo" class="footer-logo">
+        <p data-animate>© 2025 LuxeCraft Construction LLC. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript for Scroll Animation -->
+    <script>
+        // Only run on mobile devices (screen width <= 768px)
+        if (window.innerWidth <= 768) {
+            const animateElements = document.querySelectorAll('[data-animate]');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-on-scroll');
+                        observer.unobserve(entry.target); // Stop observing after animation
+                    }
+                });
+            }, {
+                threshold: 0.2 // Trigger when 20% of element is visible
+            });
+
+            animateElements.forEach(element => {
+                observer.observe(element);
+            });
+        }
+    </script>
+</body>
+</html>
