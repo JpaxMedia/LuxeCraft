@@ -27,7 +27,7 @@
         .header {
             position: relative;
             height: 60vh; /* Smaller header */
-            background-image: url('Photos/luxecraftheader.png');
+            background-image: url('luxecraftheader.png');
             background-size: cover;
             background-position: center;
             background-color: #333; /* Fallback gray if image fails */
@@ -81,15 +81,145 @@
             font-weight: 300;
         }
 
-        .mission img {
-            max-width: 100%;
-            width: 800px; /* Match text width */
-            margin-top: 30px;
+        /* Gallery Section */
+        .gallery {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: #1a1a1a;
+        }
+
+        .gallery h2 {
+            font-size: 2rem;
+            color: #d4af37;
+            margin-bottom: 40px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
             display: block;
-            margin-left: auto;
-            margin-right: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Video Gallery Section */
+        .video-gallery {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: #14213d;
+        }
+
+        .video-gallery h2 {
+            font-size: 2rem;
+            color: #d4af37;
+            margin-bottom: 40px;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .video-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .video-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .video-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .video-item::after {
+            content: '\f04b'; /* Font Awesome play icon */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #d4af37;
+            font-size: 2rem;
+            opacity: 0.8;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .modal-content video {
+            width: 100%;
+            max-height: 80vh;
+            border-radius: 10px;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #d4af37;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: #f5f5f5;
         }
 
         /* Services Section */
@@ -271,6 +401,8 @@
             }
 
             .mission h2,
+            .gallery h2,
+            .video-gallery h2,
             .services h2,
             .why-choose h2,
             .contact h2 {
@@ -281,12 +413,30 @@
                 font-size: 2rem;
             }
 
-            .services-grid {
+            .services-grid,
+            .gallery-grid,
+            .video-grid {
                 grid-template-columns: 1fr;
             }
 
-            .service-item {
+            .service-item,
+            .gallery-item,
+            .video-item {
                 padding: 20px;
+            }
+
+            .modal-content {
+                max-width: 95%;
+            }
+
+            .modal-content video {
+                max-height: 70vh;
+            }
+
+            .close {
+                font-size: 1.5rem;
+                top: 15px;
+                right: 20px;
             }
         }
 
@@ -305,6 +455,11 @@
             .contact p {
                 font-size: 1rem;
             }
+
+            .gallery-item img,
+            .video-item img {
+                height: 150px;
+            }
         }
     </style>
 </head>
@@ -312,7 +467,7 @@
     <!-- Header Section -->
     <header class="header">
         <div class="header-overlay">
-            <img src="Photos/luxecraftwhitewebsite.png" alt="LuxeCraft Construction Logo" class="logo">
+            <img src="luxecraftwhitewebsite.png" alt="LuxeCraft Construction Logo" class="logo">
             <h1>Building Better from the Frame Up</h1>
         </div>
     </header>
@@ -321,7 +476,34 @@
     <section class="mission">
         <h2 data-animate>Our Mission</h2>
         <p data-animate>At LuxeCraft Construction LLC, we deliver skilled craftsmanship, dependable service, and top-tier framing expertise. Whether you're a builder seeking a reliable framing crew or a homeowner planning a remodel, we bring precision and passion to every project, ensuring your vision becomes reality.</p>
-        <img src="Photos/house1.jpg" alt="Modern Home Construction" data-animate>
+    </section>
+
+    <!-- Photo Gallery Section -->
+    <section class="gallery">
+        <h2 data-animate>Our Work</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item" data-animate><img src="house1.jpg" alt="House Construction"></div>
+            <div class="gallery-item" data-animate><img src="luxe1.png" alt="LuxeCraft Project 1"></div>
+            <div class="gallery-item" data-animate><img src="luxe2.png" alt="LuxeCraft Project 2"></div>
+            <div class="gallery-item" data-animate><img src="luxe3.png" alt="LuxeCraft Project 3"></div>
+            <div class="gallery-item" data-animate><img src="luxe4.png" alt="LuxeCraft Project 4"></div>
+            <div class="gallery-item" data-animate><img src="luxe5.png" alt="LuxeCraft Project 5"></div>
+            <div class="gallery-item" data-animate><img src="luxe6.png" alt="LuxeCraft Project 6"></div>
+            <div class="gallery-item" data-animate><img src="luxe7.png" alt="LuxeCraft Project 7"></div>
+            <div class="gallery-item" data-animate><img src="luxe8.png" alt="LuxeCraft Project 8"></div>
+            <div class="gallery-item" data-animate><img src="luxe9.png" alt="LuxeCraft Project 9"></div>
+            <div class="gallery-item" data-animate><img src="luxe10.png" alt="LuxeCraft Project 10"></div>
+            <div class="gallery-item" data-animate><img src="luxe11.png" alt="LuxeCraft Project 11"></div>
+        </div>
+    </section>
+
+    <!-- Video Gallery Section -->
+    <section class="video-gallery">
+        <h2 data-animate>Project Videos</h2>
+        <div class="video-grid">
+            <div class="video-item" data-video="video1.mp4" data-animate><img src="thumb1.png" alt="Video 1 Thumbnail"></div>
+            <div class="video-item" data-video="video2.mp4" data-animate><img src="thumb2.png" alt="Video 2 Thumbnail"></div>
+        </div>
     </section>
 
     <!-- Services Section -->
@@ -340,7 +522,7 @@
             </div>
             <div class="service-item">
                 <i class="fas fa-hammer"></i>
-                <h3 data-animate>Full or Partial Remodels</h3>
+                <h3 data-animate>Full Perspective: Full or Partial Remodels</h3>
                 <p data-animate>Transform your home with stunning, high-quality remodels.</p>
             </div>
         </div>
@@ -372,30 +554,70 @@
 
     <!-- Footer Section -->
     <footer class="footer">
-        <img src="Photos/luxecraftwhitewebsite.png" alt="LuxeCraft Construction Logo" class="footer-logo">
+        <img src="luxecraftwhitewebsite.png" alt="LuxeCraft Construction Logo" class="footer-logo">
         <p data-animate>© 2025 LuxeCraft Construction LLC. All rights reserved.</p>
     </footer>
 
-    <!-- JavaScript for Scroll Animation -->
+    <!-- Modal for Image/Video -->
+    <div class="modal" id="galleryModal">
+        <span class="close">&times;</span>
+        <div class="modal-content"></div>
+    </div>
+
+    <!-- JavaScript for Scroll Animation and Modal -->
     <script>
-        // Only run on mobile devices (screen width <= 768px)
+        // Scroll Animation (unchanged)
         if (window.innerWidth <= 768) {
             const animateElements = document.querySelectorAll('[data-animate]');
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('animate-on-scroll');
-                        observer.unobserve(entry.target); // Stop observing after animation
+                        observer.unobserve(entry.target);
                     }
                 });
             }, {
-                threshold: 0.2 // Trigger when 20% of element is visible
+                threshold: 0.2
             });
 
             animateElements.forEach(element => {
                 observer.observe(element);
             });
         }
+
+        // Modal Functionality
+        const modal = document.getElementById('galleryModal');
+        const modalContent = modal.querySelector('.modal-content');
+        const closeBtn = modal.querySelector('.close');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const videoItems = document.querySelectorAll('.video-item');
+
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                modal.style.display = 'flex';
+                modalContent.innerHTML = `<img src="${item.querySelector('img').src}" alt="${item.querySelector('img').alt}">`;
+            });
+        });
+
+        videoItems.forEach(item => {
+            item.addEventListener('click', () => {
+                modal.style.display = 'flex';
+                modalContent.innerHTML = `<video controls autoplay><source src="${item.dataset.video}" type="video/mp4"></video>`;
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+            modalContent.innerHTML = '';
+        });
+
+        // Close modal when clicking outside content
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                modalContent.innerHTML = '';
+            }
+        });
     </script>
 </body>
 </html>
